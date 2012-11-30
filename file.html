@@ -1,6 +1,22 @@
 <html>
   <head>
   <script type="text/javascript" charset="utf-8" src="file.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    function file_clicker() {
+      var fileObj = document.getElementById("files");
+      var fp = new File(fileObj);
+      fp.read(callback);
+    }
+    function uri_clicker() {
+      var uri = document.getElementById("uri").value;
+      var fp = new File(uri);
+      fp.uri(callback);
+    }
+    function callback(text) {
+      var content = document.getElementById("content");
+      content.innerHTML = text;
+    }
+  </script>
   </head>
   <body>
     <h1>File Loader</h1>
@@ -12,21 +28,5 @@
     <button onclick="uri_clicker()">Load File</button><br /><br />
     <h3>File Text:</h3>
     <div id="content"></div>
-    <script>
-      function file_clicker() {
-        var fileObj = document.getElementById("files");
-        var fp = new File(fileObj);
-        fp.read(callback);
-      }
-      function uri_clicker() {
-        var uri = document.getElementById("uri").value;
-        var fp = new File(uri);
-        fp.uri(callback);
-      }
-      function callback(text) {
-        var content = document.getElementById("content");
-        content.innerHTML = text;
-      }
-    </script>
   </body>
 </html>
