@@ -18,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // POST REQUEST
   $uri = "";
 }
   // PHP file_get_contents() doesn't accept +'s as part of the URL string! 
-  $uri = str_replace(" ", "%20", $uri); //this works for sure
   $content = file_get_contents($uri);
   echo $content;
   
