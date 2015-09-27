@@ -31,11 +31,11 @@
     <input id="postbox" name="data"/>
     <button onclick="POST('file.php', {value : document.getElementById('postbox').value}, function(reply){alert(reply)})">POST</button><br /><br />
 
-    <h3>JavaScript Only:</h3>
+    <h3>JavaScript File Request:</h3>
     <input type="file" id="files" name="file"/>
     <button onclick="file_clicker()">Load File</button><br /><br />
 
-    <h3>HTTP Request (PHP):</h3>
+    <h3>PHP HTTP File Request:</h3>
     <input type="text" id="uri" name="uri" value="http://www.bing.com"/>
     <button onclick="uri_clicker()">Load File</button><br /><br />
 
