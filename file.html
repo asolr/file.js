@@ -6,14 +6,14 @@
     function file_clicker() {
       var fileObj = document.getElementById("files");
       var fp = new File(fileObj);
-      fp.read(callback);
+      fp.read(update);
     }
     function uri_clicker() {
       var uri = document.getElementById("uri").value;
       var fp = new File(uri);
-      fp.uri(callback);
+      fp.uri(update);
     }
-    function callback(text) {
+    function update(text) {
       var content = document.getElementById("content");
       content.innerHTML = text;
     }
@@ -21,15 +21,17 @@
   </head>
   <body>
 
-    <h1>File Loader</h1>
+    <h1>HTML (GET/POST) <br /> Request & File Loader</h1>
 
     <h3>(XMLHttpRequest GET)</h3>
     <input id="getbox" name="data"/>
-    <button onclick="GET('file.php', {value : document.getElementById('getbox').value}, function(reply){alert(reply)})">GET</button><br /><br />
+    <button onclick="GET('file.php', {value : document.getElementById('getbox').value},
+    function(reply){update(reply)})">GET</button><br /><br />
 
     <h3>(XMLHttpRequest POST)</h3>
     <input id="postbox" name="data"/>
-    <button onclick="POST('file.php', {value : document.getElementById('postbox').value}, function(reply){alert(reply)})">POST</button><br /><br />
+    <button onclick="POST('file.php', {value : document.getElementById('postbox').value},
+    function(reply){update(reply)})">POST</button><br /><br />
 
     <h3>JavaScript File Request:</h3>
     <input type="file" id="files" name="file"/>
@@ -39,7 +41,7 @@
     <input type="text" id="uri" name="uri" value="http://www.bing.com"/>
     <button onclick="uri_clicker()">Load File</button><br /><br />
 
-    <h3>File Text:</h3>
+    <h3>Server Reply:</h3>
     <div id="content"></div>
 
   </body>
