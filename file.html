@@ -1,27 +1,58 @@
 <html>
-  <head>
+<head>
   <script type="text/javascript" charset="utf-8" src="file.js"></script>
   <script type="text/javascript" charset="utf-8" src="request.js"></script>
+  <script type="text/javascript" charset="utf-8" src="cookie.js"></script>
   <script type="text/javascript" charset="utf-8">
-    function file_clicker() {
-      var fileObj = document.getElementById("files");
-      var fp = new File(fileObj);
-      fp.read(update);
-    }
-    function uri_clicker() {
-      var uri = document.getElementById("uri").value;
-      var fp = new File(uri);
-      fp.uri(update);
-    }
-    function update(text) {
-      var content = document.getElementById("content");
-      content.innerHTML = text;
-    }
+  function file_clicker() {
+    var fileObj = document.getElementById("files");
+    var fp = new File(fileObj);
+    fp.read(update);
+  }
+  function uri_clicker() {
+    var uri = document.getElementById("uri").value;
+    var fp = new File(uri);
+    fp.uri(update);
+  }
+  function update(text) {
+    var content = document.getElementById("content");
+    content.innerHTML = text;
+  }
   </script>
-  </head>
-  <body>
+</head>
+<body>
 
-    <h1>HTML (GET/POST) <br /> Request & File Loader</h1>
+  <h1>HTML i/o (INPUT/OUTPUT)</h1>
+  <h2>GET or POST using XHML HTTP Request</h2>
+
+  <div id="io">
+
+    <h3>(temporary local window storage)</h3>
+    <h4>sessionStorage.setItem() and .getItem():</h4>
+    Set Key: <input id="skey" name="skey" value="key"/>
+    Value: <input id="svalue" name="value" value="value"/>
+    <button onclick="sessionStorage.setItem(document.getElementById('skey').value, document.getElementById('svalue').value); update(sessionStorage.getItem(document.getElementById('skey').value))">SET ITEM</button><br />
+    Get Key: <input id="gkey" name="gkey" value="key"/>
+    <button onclick="update(sessionStorage.getItem(document.getElementById('gkey').value))">GET ITEM</button><br /><br />
+
+    <h3>Cookies</h3>
+    <h4>Set Cookie:</h4>
+    Cookie Name: <input id="cname" name="cname" value="mycookiename"/><br />
+    Cookie Value: <input id="cvalue" name="cvalue" value="mycookievalue"/><br />
+    Cookie Save Time (days): <input id="cdays" name="cdays" value="1"/><br />
+    <button onclick="testSetCookie()">SET cookie</button><br />
+    <h4>Get Cookie:</h4>
+    Cookie Name: <input id="gcname" name="gcname" value="mycookiename"/><br />
+    <button onclick="update(getCookie(document.getElementById('gcname').value))">GET cookie</button><br /><br />
+
+    <script type="text/javascript">
+    function testSetCookie() {
+      setCookie(document.getElementById('cname').value,
+      document.getElementById('cvalue').value,
+      document.getElementById('cdays').value);
+      update(getCookie(document.getElementById('cname').value));
+    }
+    </script>
 
     <h3>(XMLHttpRequest GET)</h3>
     <input id="getbox" name="data"/>
@@ -41,8 +72,10 @@
     <input type="text" id="uri" name="uri" value="http://www.bing.com"/>
     <button onclick="uri_clicker()">Load File</button><br /><br />
 
-    <h3>Server Reply:</h3>
-    <div id="content"></div>
 
-  </body>
+  </div>
+  <h3>Reply:</h3>
+  <div id="content"></div>
+
+</body>
 </html>
